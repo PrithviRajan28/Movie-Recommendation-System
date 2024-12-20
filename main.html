@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommendation System</h1>
+        <input type="text" id="username" placeholder="Enter your username">
+        <button id="recommendButton">Get Recommendations</button>
+        <div id="recommendations"></div>
+    </div>
+
+    <script>
+        // Pre-defined dataset of users and their movie recommendations
+        const data = {
+            "user1": ["Inception", "The Matrix", "Interstellar"],
+            "user2": ["Titanic", "The Notebook", "La La Land"],
+            "user3": ["Avengers", "Iron Man", "Thor"],
+            "user4": ["Harry Potter", "Fantastic Beasts", "The Hobbit"],
+            "user5": ["Frozen", "Moana", "Coco"],
+            "user6": ["Parasite", "Oldboy", "Snowpiercer"],
+            "user7": ["The Dark Knight", "Joker", "Batman Begins"],
+            "user8": ["Forrest Gump", "Cast Away", "The Green Mile"],
+            "user9": ["Spirited Away", "My Neighbor Totoro", "Howl's Moving Castle"],
+            "user10": ["The Godfather", "Goodfellas", "Scarface"]
+        };
+
+        // Event listener for the button
+        document.getElementById('recommendButton').addEventListener('click', function() {
+            const username = document.getElementById('username').value.trim();
+            const recommendationsDiv = document.getElementById('recommendations');
+
+            // Clear previous recommendations
+            recommendationsDiv.innerHTML = '';
+
+            // Check if the username exists in the dataset
+            if (data[username]) {
+                const movies = data[username];
+                recommendationsDiv.innerHTML = `<h2>Recommended Movies:</h2><ul>${movies.map(movie => `<li>${movie}</li>`).join('')}</ul>`;
+            } else {
+                recommendationsDiv.innerHTML = `<p>No recommendations found for "${username}".</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
